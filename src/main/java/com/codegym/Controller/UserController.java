@@ -32,8 +32,10 @@ public class UserController {
     }
 
     @PostMapping
-    public ModelAndView sandwichesOrdered(@ModelAttribute("Sandwich") Sandwich sandwich) {
-        System.out.println(sandwich.getIngredientName());
-        return new ModelAndView("index", "orders", "orders");
+    public ModelAndView sandwichesOrdered(ModelMap model, @ModelAttribute("Sandwich") Sandwich sandwich) {
+//        System.out.println(sandwich.getIngredientName());
+        String pickResult = sandwich.getIngredientName().toString();
+        ModelAndView newModel = new ModelAndView("order","pickResult",pickResult);
+        return newModel;
     }
 }
